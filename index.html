@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>اطلس شخصی اقتصاد را تسخیر کن</title>
+<style>
+@font-face{font-family:Atlas;src:url('./fonts/IRANSansXFaNum-Regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:Atlas;src:url('./fonts/IRANSansXFaNum-DemiBold.ttf');font-weight:600;font-display:swap}
+@font-face{font-family:Atlas;src:url('./fonts/IRANSansXFaNum-ExtraBold.ttf');font-weight:800;font-display:swap}
+@font-face{font-family:VazirFallback;src:url('./fonts/Vazirmatn-Regular.ttf');font-weight:400;font-display:swap}
+@font-face{font-family:VazirFallback;src:url('./fonts/Vazirmatn-SemiBold.ttf');font-weight:600;font-display:swap}
+@font-face{font-family:VazirFallback;src:url('./fonts/Vazirmatn-Bold.ttf');font-weight:800;font-display:swap}
+:root{color-scheme:dark;--bg:#050505;--panel:#0d0d0d;--elevated:#141414;--line:#292929;--muted:#a39f98;--text:#f4f1ea;--accent:#e7b76a;--green:#42c98b;--green-bg:#0b2118;--yellow:#f2b84b;--yellow-bg:#251b08;--red:#f27474;--red-bg:#281010}
+:root[data-theme=light]{color-scheme:light;--bg:#f3f0e9;--panel:#fffefa;--elevated:#f7f4ed;--line:#d4cdc2;--muted:#5c574f;--text:#171614;--accent:#805014;--green:#0e6f47;--green-bg:#e8f7f0;--yellow:#8a5400;--yellow-bg:#fdf3df;--red:#a62626;--red-bg:#fdebeb}
+*{box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.85 Atlas,VazirFallback,sans-serif}
+main{max-width:1440px;margin:auto;padding:20px 28px 64px}
+header{padding-bottom:16px;border-bottom:1px solid var(--line)}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.titleblock h1{font-size:26px;font-weight:800;margin:2px 0}
+.titleblock p{margin:0;font-size:13px;color:var(--muted)}
+h2{font-size:20px;margin:10px 0}
+h3{font-size:16px;font-weight:600;line-height:1.65;margin:6px 0}
+h1,h2,h3{text-wrap:balance}
+small,.meta{font-size:12px;color:var(--muted)}
+p{color:var(--muted);text-wrap:pretty;margin:8px 0}
+button,input,select,textarea{font:inherit;color:inherit;background:var(--elevated);border:1px solid var(--line);border-radius:8px;padding:8px 12px;max-width:100%}
+select{appearance:none;-webkit-appearance:none;padding-inline-end:34px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23a39f98' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 12px center}
+button{cursor:pointer;min-height:40px;transition:color 120ms,border-color 120ms,background 120ms,transform 100ms}
+button:active{transform:scale(.97)}
+button:hover,button.active{border-color:var(--accent)}
+button.active{color:var(--accent)}
+button:disabled{opacity:.55;cursor:wait}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.row,.filters,.routines{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.notice{font-size:12.5px;padding:10px 14px;background:var(--elevated);border-inline-start:3px solid var(--accent);border-radius:6px;color:var(--muted);margin-top:12px}
+.chapters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.chapter-card{text-align:right;display:block;width:100%;border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:14px 16px;min-width:0}
+.chapter-card.active{border-color:var(--accent);background:var(--elevated)}
+.chapter-card h3{margin:4px 0}
+.panel,article{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:18px;min-width:0}
+.big{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
+.bar{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin:8px 0}
+.bar span{display:block;height:100%;background:var(--accent)}
+#cockpit{margin-top:12px;padding:14px 18px}
+.cockpithead{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.cockpithead h2{font-size:16px;margin:0}
+.stackbar{display:flex;height:8px;border-radius:5px;overflow:hidden;margin:10px 0;background:var(--line)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px}
+.legend button{min-height:30px;padding:2px 8px;font-size:12px;background:none;border-color:transparent}
+.legend button:hover,.legend button.active{border-color:var(--line);background:var(--elevated)}
+nav{position:sticky;top:0;z-index:20;background:var(--bg);margin:0 0 16px;padding-top:8px;border-bottom:1px solid var(--line);display:flex;gap:4px;flex-wrap:wrap}
+nav button{background:none;border:none;border-bottom:2px solid transparent;border-radius:0;padding:10px 16px;margin-bottom:-1px;color:var(--muted);font-size:14px}
+nav button:hover{color:var(--text)}
+nav button.active{border-bottom-color:var(--accent);color:var(--accent);font-weight:600}
+.pane{display:none}
+.pane.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+.filters{padding:8px 0 12px}
+.filters input{flex:1;min-width:180px}
+.routines{margin:6px 0 16px}
+.routines button{font-size:13px;min-height:36px;padding:6px 12px}
+.tag{color:var(--muted);font-size:12px}
+article{display:flex;flex-direction:column;border-inline-start:3px solid var(--line)}
+article[data-status=GREEN]{border-inline-start-color:var(--green)}
+article[data-status=YELLOW]{border-inline-start-color:var(--yellow)}
+article[data-status=RED]{border-inline-start-color:var(--red)}
+.cardtop{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.pin{min-height:34px;padding:2px 9px;font-size:18px;background:none}
+.metric{font-size:19px;font-weight:600;margin:10px 0 4px;overflow-wrap:anywhere}
+.metric.empty{font-size:13.5px;color:var(--muted);font-weight:400}
+.pills{display:flex;gap:6px;margin-top:10px}
+.pills button{flex:1;font-size:13px;font-weight:600;padding:6px;min-height:38px}
+.pills .g[aria-pressed=true]{background:var(--green-bg);border:2px solid var(--green)}
+.pills .y[aria-pressed=true]{background:var(--yellow-bg);border:2px solid var(--yellow)}
+.pills .r[aria-pressed=true]{background:var(--red-bg);border:2px solid var(--red)}
+.g{color:var(--green)}.y{color:var(--yellow)}.r{color:var(--red)}
+details{margin-top:10px;border-top:1px solid var(--line);padding-top:6px}
+summary{cursor:pointer;min-height:34px;padding:4px 0;color:var(--muted);font-size:13px;font-weight:600}
+summary:hover{color:var(--text)}
+.rule{border-inline-start:2px solid;padding:6px 10px;margin:6px 0;font-size:13px}
+.formula{background:var(--elevated);padding:10px 12px;border-radius:8px;overflow-wrap:anywhere;font-size:13px}
+.caveat{color:var(--yellow);font-size:13px}
+label{display:block;margin:10px 0;color:var(--muted);font-size:12.5px}
+label input,label textarea,label select{display:block;width:100%;color:var(--text);margin-top:4px}
+textarea{min-height:84px}
+pre{font:inherit;white-space:pre-wrap;overflow-wrap:anywhere}
+output,bdi,.num{font-variant-numeric:tabular-nums}
+/* Calculators 2-column paired workbench */
+.calc-pair{display:grid;grid-template-columns:1.05fr 1fr;gap:16px;margin-bottom:16px;align-items:start}
+.calc-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.calc-inputs label{margin:0}
+.calc-inputs input{direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+.result{padding:9px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13.5px}
+.result:last-child{border-bottom:none}
+.result output{font-weight:600;color:var(--text);font-size:15px}
+.signal-banner{margin-top:12px;padding:10px 12px;border-radius:8px;background:var(--elevated);border-inline-start:3px solid var(--accent);font-size:13px;color:var(--text)}
+/* Book Reader visual PDF + search */
+.reader-layout{display:grid;grid-template-columns:340px minmax(0,1fr);gap:16px;align-items:start}
+.search-list{display:flex;flex-direction:column;gap:8px;margin-top:12px;max-height:680px;overflow:auto;padding-inline-end:4px}
+.match-card{text-align:right;display:block;width:100%;padding:12px 14px;background:var(--elevated);border:1px solid var(--line);border-radius:8px;direction:rtl}
+.match-card:hover,.match-card.active{border-color:var(--accent)}
+.match-head{display:flex;justify-content:space-between;font-size:12px;color:var(--accent);font-weight:600;margin-bottom:6px}
+.match-snippet{font-size:12.5px;color:var(--muted);line-height:1.8;direction:rtl;text-align:right;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+mark{background:var(--yellow-bg);color:var(--yellow);padding:0 3px;border-radius:3px}
+.page-viewer{text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.page-nav{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+#pageimg{max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line);background:#fff;display:block;margin:0 auto}
+#pagetext{max-width:78ch;line-height:2.1;font-size:15px;margin:14px auto 0;text-align:right;direction:rtl;unicode-bidi:plaintext}
+/* Advisor */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.chips button{font-size:12.5px;min-height:34px;padding:5px 10px}
+#analysis{min-height:140px;line-height:2;font-size:14.5px}
+#analysis h3,#analysis h4{color:var(--accent);margin:16px 0 6px;font-weight:700}
+#analysis h3:first-child,#analysis h4:first-child{margin-top:0}
+#analysis p{color:var(--text);margin:6px 0}
+#analysis ul,#analysis ol{margin:6px 0 12px;padding-inline-start:22px;color:var(--text)}
+#analysis li{margin:4px 0}
+#analysis strong{color:var(--text);font-weight:700}
+#analysis hr{border:0;border-top:1px solid var(--line);margin:14px 0}
+#analysis code{font-family:monospace;direction:ltr;unicode-bidi:isolate;background:var(--elevated);padding:1px 5px;border-radius:4px;font-size:13px}
+#modelmeta bdi{font-family:system-ui,-apple-system,sans-serif;direction:ltr;unicode-bidi:isolate}
+.empty-state{grid-column:1/-1;padding:36px;text-align:center;border:1px dashed var(--line);border-radius:12px;color:var(--muted)}
+#toast{position:fixed;bottom:20px;inset-inline-end:24px;background:var(--elevated);border:1px solid var(--accent);padding:10px 16px;border-radius:10px;z-index:50;max-width:320px;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.45);font-size:13px}
+#toast:empty{display:none}
+.savefeedback{font-size:12px;color:var(--green);margin-inline-start:6px}
+.history{font-size:12px;border-top:1px solid var(--line);padding-top:8px;margin-top:8px;color:var(--muted)}
+a{color:var(--accent)}
+.skip{position:absolute;top:-100px}.skip:focus{top:0}
+#error{color:var(--red);background:var(--red-bg);padding:10px 14px;border-radius:8px}#error:empty{display:none}
+@media(min-width:1520px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:1024px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.chapters{grid-template-columns:repeat(2,minmax(0,1fr))}.calc-pair,.reader-layout{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:640px){main{padding:14px 14px 56px}.grid,.calc-inputs{grid-template-columns:minmax(0,1fr)}.titleblock h1{font-size:22px}.panel,article{padding:14px}.chapters{gap:8px}.chapter-card{padding:10px 12px}nav{gap:0}nav button{flex:1;font-size:12.5px;padding:8px 6px}.filters>*{width:100%}input,select,textarea{font-size:16px}.routines button{flex:1}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main-nav">رفتن به بخش‌ها</a>
+<main>
+  <header>
+    <div class="topbar">
+      <div class="titleblock">
+        <small>دفتر تصمیم‌های اقتصادی · نسخه تعاملی وب (UNDER_REVIEW · NOT VALIDATED)</small>
+        <h1>اقتصاد را تسخیر کن</h1>
+        <p>اطلس تعاملی محتوای کتاب علی صادقین و جمال سلیمانی&nbsp;·&nbsp;چهار فصل&nbsp;·&nbsp;۱۷۶ صفحه PDF</p>
+      </div>
+      <div class="row">
+        <button id="theme" type="button">تم روشن</button>
+        <button id="export" type="button">پشتیبان JSON</button>
+        <button id="importbtn" type="button">بازیابی JSON</button>
+        <input id="importfile" type="file" accept="application/json,.json" hidden>
+      </div>
+    </div>
+    <div class="notice">این ابزار کاملاً مستقل است و داده زنده خودکار ندارد؛ چراغ‌ها و یادداشت‌های شما به‌صورت خصوصی در مرورگر خودتان (LocalStorage) ذخیره می‌شوند. در تب «کتاب‌خوان تصویری PDF» تصویر اصلی صفحات کتاب نمایش داده می‌شود تا جدول‌ها، نمودارها و اعداد فارسی بدون به‌هم‌ریختگی خوانده شوند (متن خام استخراج‌شده صرفاً لایه کمکی است).</div>
+    <div class="chapters" id="chapters"></div>
+    <div id="cockpit" class="panel">
+      <div class="cockpithead">
+        <div><small>مرور دو دقیقه‌ای روزمره</small><h2>وضعیت دیده‌بان و موعد مرور شاخص‌ها</h2></div>
+        <button id="jumpdue" type="button"></button>
+      </div>
+      <div id="regime"></div>
+      <small>توزیع ارزیابی‌های دستی شما (بدون وزن‌دهی)؛ توصیه خرید و فروش نیست. با کلیک روی هر فصل یا هر وضعیت، همان شاخص‌ها فیلتر می‌شوند.</small>
+    </div>
+  </header>
+
+  <p id="error" role="alert"></p>
+
+  <nav id="main-nav" aria-label="بخش‌های داشبورد">
+    <button type="button" class="active" data-pane="atlas">اطلس شاخص‌ها (۵۲)</button>
+    <button type="button" data-pane="calc">آزمایشگاه محاسبات (زنده)</button>
+    <button type="button" data-pane="reader">کتاب‌خوان تصویری PDF</button>
+  </nav>
+
+  <section class="pane active" id="atlas">
+    <div class="filters">
+      <input id="q" aria-label="جست‌وجوی شاخص" placeholder="جست‌وجوی نام شاخص، کد، فرمول یا منبع…">
+      <select id="chapter" aria-label="فصل">
+        <option value="">همه فصل‌ها (۴ فصل)</option>
+        <option value="1">فصل ۱: رشد و تقاضا</option>
+        <option value="2">فصل ۲: پول و تورم</option>
+        <option value="3">فصل ۳: بهره و اعتبار</option>
+        <option value="4">فصل ۴: نرخ ارز</option>
+      </select>
+      <select id="status" aria-label="ارزیابی شخصی">
+        <option value="">همه ارزیابی‌ها</option>
+        <option value="UNSET">ثبت‌نشده</option>
+        <option value="GREEN">سبز</option>
+        <option value="YELLOW">زرد</option>
+        <option value="RED">قرمز</option>
+      </select>
+      <button id="resetfilters" type="button" style="display:none">حذف فیلترها</button>
+      <span id="count" class="meta"></span>
+    </div>
+    <div class="routines" aria-label="روش مرور">
+      <button type="button" data-view="all" class="active">همه شاخص‌ها</button>
+      <button type="button" data-view="due">نیازمند مرور</button>
+      <button type="button" data-view="pinned">دیده‌بان (★)</button>
+      <button type="button" data-view="fast">روزانه / هفتگی (۱۱)</button>
+      <button type="button" data-view="slow">ماهانه / فصلی (۴۱)</button>
+    </div>
+    <div class="grid" id="cards"></div>
+  </section>
+
+  <section class="pane" id="calc">
+    <div class="topbar" style="margin-bottom:12px">
+      <div>
+        <h2>آزمایشگاه زنده روابط ۴ فصل کتاب</h2>
+        <p>با تغییر هر عدد (فارسی یا انگلیسی)، خروجی‌ها بلافاصله با دقت Decimal محاسبه می‌شوند. ارقام پیش‌فرض صرفاً نمونه آموزشی‌اند، نه آمار روز بازار.</p>
+      </div>
+      <button id="resetcalc" type="button">بازنشانی ارقام نمونه</button>
+    </div>
+    <div id="calc-workbench"></div>
+  </section>
+
+  <section class="pane" id="reader">
+    <div class="reader-layout">
+      <aside class="panel">
+        <h3>جست‌وجو در ۱۷۶ صفحه کتاب</h3>
+        <form id="searchform" class="row" style="margin-top:8px">
+          <input id="bookq" style="flex:1" aria-label="جست‌وجو در متن کتاب" placeholder="مثلاً: شامخ، نقدینگی، کریدور…">
+          <button id="searchbook" type="submit">بیاب</button>
+        </form>
+        <small id="searchmeta" style="display:block;margin-top:8px">با زدن Enter یا دکمه «بیاب»، صفحات مرتبط فهرست می‌شوند.</small>
+        <div id="matches" class="search-list"></div>
+      </aside>
+      <div class="page-viewer">
+        <div class="page-nav">
+          <div class="row">
+            <button id="prevpage" type="button">→ صفحه قبل</button>
+            <label style="margin:0;display:inline-flex;align-items:center;gap:6px">صفحه PDF:
+              <input id="page" type="text" inputmode="numeric" value="۱۲" style="width:74px;text-align:center">
+              <span>از ۱۷۶</span>
+            </label>
+            <button id="read" type="button">برو</button>
+            <button id="nextpage" type="button">صفحه بعد ←</button>
+          </div>
+          <span id="pagemeta" class="meta"></span>
+        </div>
+        <img id="pageimg" alt="تصویر صفحه کتاب اقتصاد را تسخیر کن" src="./book-pages/page-012.jpg">
+        <details style="text-align:right;margin-top:14px">
+          <summary>نمایش لایه متن خام استخراج‌شده (صرفاً جهت کپی عبارت‌ها — اعداد در تصویر بالا دقیق‌اند)</summary>
+          <pre id="pagetext"></pre>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = x => String(x ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const faDigits = '۰۱۲۳۴۵۶۷۸۹', arDigits = '٠١٢٣٤٥٦٧٨٩';
+function toEnDigits(s) {
+  return String(s ?? '').replace(/[۰-۹]/g, d => faDigits.indexOf(d)).replace(/[٠-٩]/g, d => arDigits.indexOf(d)).replace(/٫/g, '.').replace(/٬/g, '');
+}
+function normFa(s) {
+  return toEnDigits(s).replace(/ي/g, 'ی').replace(/ك/g, 'ک').replace(/\u200c/g, ' ').toLowerCase();
+}
+function fmtFaNum(v) {
+  const raw = toEnDigits(v).trim();
+  if (raw === '' || Number.isNaN(Number(raw))) return String(v ?? '');
+  const num = Number(raw);
+  const parts = raw.split('.');
+  const frac = parts[1] ? parts[1].length : 0;
+  return num.toLocaleString('fa-IR', { minimumFractionDigits: frac, maximumFractionDigits: Math.max(frac, 4) });
+}
+
+let indicators = [], signals = {}, view = 'all', saving = false;
+const openEditors = new Set(), openGuides = new Set();
+const names = ['رشد و تقاضا', 'پول و تورم', 'بهره و اعتبار', 'نرخ ارز'];
+const statusNames = { GREEN: 'سبز', YELLOW: 'زرد', RED: 'قرمز', UNSET: 'ثبت‌نشده' };
+const cadenceDays = { روزانه: 1, هفتگی: 7, ماهانه: 30, فصلی: 90 };
+
+
+const STORAGE_SIGNALS_KEY = 'conquer-economy-personal-signals-v1';
+let __CATALOG_CACHE__ = null;
+let __BOOK_PAGES_CACHE__ = null;
+
+async function ensureCatalog() {
+  if (!__CATALOG_CACHE__) {
+    const r = await fetch('./catalog.json');
+    if (!r.ok) throw Error('خطا در بارگذاری کاتالوگ شاخص‌ها');
+    __CATALOG_CACHE__ = await r.json();
+  }
+  return __CATALOG_CACHE__;
+}
+
+async function ensureBookPages() {
+  if (!__BOOK_PAGES_CACHE__) {
+    const r = await fetch('./book-pages.json');
+    if (!r.ok) throw Error('خطا در بارگذاری متن صفحات کتاب');
+    __BOOK_PAGES_CACHE__ = await r.json();
+  }
+  return __BOOK_PAGES_CACHE__;
+}
+
+function loadLocalSignals() {
+  try {
+    const raw = localStorage.getItem(STORAGE_SIGNALS_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return (parsed && typeof parsed.signals === 'object') ? parsed.signals : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveLocalSignals(incoming) {
+  const existing = loadLocalSignals();
+  const nowIso = new Date().toISOString();
+  const allowed = new Set(['GREEN', 'YELLOW', 'RED', 'UNSET']);
+  const clean = {};
+  for (const [indId, entry] of Object.entries(incoming || {})) {
+    if (!entry || typeof entry !== 'object') continue;
+    const prev = existing[indId] || {};
+    let st = String(entry.status || 'UNSET').toUpperCase();
+    if (!allowed.has(st)) st = 'UNSET';
+    const note = String(entry.note || '').trim().slice(0, 600);
+    const val = String(entry.observed_value || '').trim().slice(0, 120);
+    const src = String(entry.source ?? prev.source ?? '').trim().slice(0, 160);
+    const pinned = Boolean(entry.pinned ?? prev.pinned ?? false);
+
+    const changed = (
+      st !== (prev.status || 'UNSET') ||
+      val !== (prev.observed_value || '') ||
+      note !== (prev.note || '') ||
+      src !== (prev.source || '')
+    );
+    const reviewedAt = entry.reviewed_at || ((changed && (st !== 'UNSET' || val || note)) ? nowIso : (prev.reviewed_at || ''));
+    let history = Array.isArray(prev.history) ? [...prev.history] : [];
+    if (changed && (st !== 'UNSET' || val)) {
+      const snap = { at: nowIso, status: st, value: val };
+      if (!history.length || history[0].status !== st || history[0].value !== val) {
+        history = [snap, ...history.slice(0, 7)];
+      }
+    }
+    if (st !== 'UNSET' || note || val || src || pinned) {
+      clean[indId] = {
+        status: st,
+        observed_value: val,
+        source: src,
+        note,
+        pinned,
+        reviewed_at: String(reviewedAt || ''),
+        history: history.slice(0, 8)
+      };
+    }
+  }
+  localStorage.setItem(STORAGE_SIGNALS_KEY, JSON.stringify({ updated_at: nowIso, signals: clean }));
+  return { status: 'OK', signals: clean };
+}
+
+function numDef(v, defVal) {
+  const s = toEnDigits(v !== undefined && v !== null && String(v).trim() !== '' ? v : defVal).replace(/,/g, '').trim();
+  const n = Number(s);
+  return Number.isFinite(n) ? n : Number(defVal);
+}
+function qRound(val, dec = 2) {
+  const f = Math.pow(10, dec);
+  const r = Math.sign(val) >= 0 ? Math.floor(val * f + 0.5) / f : -Math.floor(Math.abs(val) * f + 0.5) / f;
+  return r.toFixed(dec);
+}
+
+function simulateClient(p) {
+  const shaparak = numDef(p.shaparak_nom_growth_pct, 36.0);
+  const cpi = numDef(p.cpi_inflation_pct, 42.0);
+  const ppi = numDef(p.ppi_inflation_pct, 47.5);
+  const prod = numDef(p.product_price_growth_pct, 34.0);
+  const grpCpi = numDef(p.group_cpi_growth_pct, 40.0);
+  const fxGrow = numDef(p.fx_period_growth_pct, 45.0);
+
+  const realExact = (((1 + shaparak / 100) / (1 + cpi / 100)) - 1) * 100;
+  const realLin = shaparak - cpi;
+  const ppiCpi = ppi - cpi;
+  const prodGrp = grpCpi !== 0 ? prod / grpCpi : 0;
+  const prodFx = fxGrow !== 0 ? prod / fxGrow : 0;
+  const prodPpi = ppi !== 0 ? prod / ppi : 0;
+
+  const m2 = numDef(p.m2_hemmat, 12500);
+  const mb = numDef(p.mb_hemmat, 1580);
+  const m2Yoy = numDef(p.m2_yoy_growth_pct, 39.5);
+  const m1 = numDef(p.money_m1_hemmat, 3100);
+  const qm = numDef(p.quasi_money_hemmat, 9400);
+
+  const mult = mb > 0 ? m2 / mb : 0;
+  const spring = m2Yoy - cpi;
+  const totParts = m1 + qm;
+  const mToQ = qm > 0 ? m1 / qm : 0;
+  const mShare = totParts > 0 ? (m1 / totParts) * 100 : 0;
+
+  const ytm = numDef(p.nominal_ytm_pct, 34.5);
+  const expInf = numDef(p.expected_inf_pct, 43.0);
+  const interbank = numDef(p.interbank_rate_pct, 23.9);
+  const ceil = numDef(p.corridor_ceiling_pct, 24.0);
+  const sYtm = numDef(p.short_ytm_pct, 33.2);
+  const lYtm = numDef(p.long_ytm_pct, 35.8);
+
+  const fisherEx = (((1 + ytm / 100) / (1 + expInf / 100)) - 1) * 100;
+  const fisherLin = ytm - expInf;
+  const corrGap = ceil - interbank;
+  const slope = lYtm - sYtm;
+
+  const freeUsd = numDef(p.free_usd_toman, 92000);
+  const anchor = numDef(p.scenario_anchor_busd, 135);
+  const baseUsd = numDef(p.base_usd_toman, 65000);
+  const infUs = numDef(p.inf_us_pct, 3.1);
+  const aed = numDef(p.aed_remit_toman, 25150);
+  const peg = 3.6725;
+  const offUsd = numDef(p.official_usd_toman, 68500);
+  const autoDom = numDef(p.auto_domestic_toman, 3450000000);
+  const autoUsd = numDef(p.auto_landed_usd, 33000);
+
+  const totM2Toman = m2 * 1e12;
+  const dollarM2 = freeUsd > 0 ? (totM2Toman / freeUsd) / 1e9 : 0;
+  const impAnchor = anchor > 0 ? totM2Toman / (anchor * 1e9) : 0;
+  const pppRatio = (1 + cpi / 100) / (1 + infUs / 100);
+  const pppEx = (pppRatio - 1) * 100;
+  const pppLin = cpi - infUs;
+  const pppUsd = baseUsd * pppRatio;
+  const impAed = aed * peg;
+  const aedSpread = freeUsd > 0 ? ((impAed - freeUsd) / freeUsd) * 100 : 0;
+  const offGap = offUsd > 0 ? ((freeUsd - offUsd) / offUsd) * 100 : 0;
+  const autoImp = autoUsd > 0 ? autoDom / autoUsd : 0;
+  const autoSpread = freeUsd > 0 ? ((autoImp - freeUsd) / freeUsd) * 100 : 0;
+
+  return {
+    status: 'OK',
+    real_sector_and_pricing: {
+      real_consumption_exact_pct: qRound(realExact, 2),
+      real_consumption_linear_pct: qRound(realLin, 2),
+      ppi_minus_cpi_pct: qRound(ppiCpi, 2),
+      product_to_group_cpi_ratio: qRound(prodGrp, 2),
+      product_to_fx_ratio: qRound(prodFx, 2),
+      product_to_ppi_ratio: qRound(prodPpi, 2),
+      pricing_signal: prodPpi < 0.95
+        ? 'هشدار فرسایش حاشیه سود: رشد قیمت فروش محصول از تورم تولیدکننده (PPI) عقب مانده است'
+        : 'همگامی یا پیشتازی قیمت محصول نسبت به هزینه تولید صنعت'
+    },
+    monetary_and_liquidity: {
+      money_multiplier: qRound(mult, 3),
+      m2_minus_cpi_spring_pct: qRound(spring, 2),
+      m_to_q_ratio: qRound(mToQ, 4),
+      money_share_pct: qRound(mShare, 2),
+      liquidity_signal: mShare >= 25.0
+        ? 'سیالیت بالا (سهم پول جاری بالای ۲۵٪ کل نقدینگی — کنترل فصلی و نقد عملیاتی ضروری)'
+        : 'ترکیب پول و شبه‌پول در محدوده متعارف'
+    },
+    credit_and_rates: {
+      fisher_exact_real_rate_pct: qRound(fisherEx, 2),
+      fisher_linear_approx_pct: qRound(fisherLin, 2),
+      corridor_ceiling_gap_pct: qRound(corrGap, 2),
+      yield_curve_slope_pct: qRound(slope, 2),
+      credit_signal: corrGap <= 0.30
+        ? 'تنگنای شدید ذخایر بین‌بانکی (چسبیده به سقف کریدور)'
+        : 'فاصله متعادل نرخ بین‌بانکی تا سقف کریدور'
+    },
+    fx_and_implicit_dollar: {
+      dollar_m2_billion_usd: qRound(dollarM2, 2),
+      scenario_anchor_billion_usd: qRound(anchor, 0),
+      implied_usd_at_anchor_toman: qRound(impAnchor, 0),
+      ppp_exact_growth_pct: qRound(pppEx, 2),
+      ppp_linear_diff_pct: qRound(pppLin, 2),
+      ppp_implied_usd_toman: qRound(pppUsd, 0),
+      implied_usd_from_aed_toman: qRound(impAed, 0),
+      aed_vs_free_usd_spread_pct: qRound(aedSpread, 2),
+      fx_official_free_gap_pct: qRound(offGap, 2),
+      auto_implicit_usd_toman: qRound(autoImp, 0),
+      auto_implicit_spread_pct: qRound(autoSpread, 2)
+    }
+  };
+}
+
+async function searchBookClient(query, limit = 16) {
+  const q = String(query || '').trim();
+  if (!q) return { query: '', total_matched_pages: 0, matches: [] };
+  const pages = await ensureBookPages();
+  const normQ = normFa(q);
+  const terms = normQ.split(/\s+/).filter(Boolean);
+  if (!terms.length) return { query: q, total_matched_pages: 0, matches: [] };
+  const scored = [];
+  for (const row of pages) {
+    const txt = row.t || '';
+    if (!txt.trim()) continue;
+    const nTxt = normFa(txt);
+    let score = 0;
+    for (const term of terms) {
+      let pos = 0;
+      while ((pos = nTxt.indexOf(term, pos)) !== -1) { score++; pos += term.length; }
+    }
+    if (score > 0) scored.push({ score, p: row.p, txt, nTxt });
+  }
+  scored.sort((a, b) => (b.score - a.score) || (a.p - b.p));
+  const matches = scored.slice(0, limit).map(item => {
+    const idx = item.nTxt.indexOf(terms[0]);
+    let start = idx >= 0 ? Math.max(0, idx - 80) : 0;
+    let end = Math.min(item.txt.length, start + 220);
+    if (start > 0) {
+      const sp = item.txt.indexOf(' ', start);
+      if (sp >= 0 && sp < start + 25) start = sp + 1;
+    }
+    if (end < item.txt.length) {
+      const sp = item.txt.lastIndexOf(' ', end);
+      if (sp > end - 25) end = sp;
+    }
+    let snippet = item.txt.slice(start, end).replace(/\n/g, ' ').trim();
+    if (start > 0) snippet = '… ' + snippet;
+    if (end < item.txt.length) snippet = snippet + ' …';
+    return { page: item.p, hits: item.score, snippet };
+  });
+  return { query: q, total_matched_pages: scored.length, matches };
+}
+
+async function api(url, data) {
+  const u = new URL(url, window.location.href);
+  if (u.pathname.endsWith('/api/state')) {
+    const catalog = await ensureCatalog();
+    return { status: 'OK', catalog, personal_signals: { signals: loadLocalSignals() } };
+  }
+  if (u.pathname.endsWith('/api/signals')) {
+    return saveLocalSignals(data?.signals || {});
+  }
+  if (u.pathname.endsWith('/api/simulate') || u.pathname.endsWith('/api/calculate')) {
+    return simulateClient(data || {});
+  }
+  if (u.pathname.endsWith('/api/book/page')) {
+    const pNum = Number(u.searchParams.get('page')) || 12;
+    const pages = await ensureBookPages();
+    const found = pages.find(x => x.p === pNum);
+    return { page: pNum, text: found ? found.t : 'صفحه یافت نشد.' };
+  }
+  if (u.pathname.endsWith('/api/book/search')) {
+    return searchBookClient(u.searchParams.get('q') || '', Number(u.searchParams.get('limit')) || 16);
+  }
+  throw Error('مسیر ناشناخته در نسخه وب');
+}
+
+function fail(e) { $('#error').textContent = 'خطا: ' + (e.message || e); }
+function toast(t) {
+  $('#toast').textContent = t;
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => $('#toast').textContent = '', 3200);
+}
+function tab(id, scroll = false) {
+  document.querySelectorAll('.pane').forEach(x => x.classList.toggle('active', x.id === id));
+  document.querySelectorAll('[data-pane]').forEach(x => x.classList.toggle('active', x.dataset.pane === id));
+  if (scroll) $('#main-nav').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+document.querySelectorAll('[data-pane]').forEach(x => x.onclick = () => tab(x.dataset.pane));
+
+function due(x) {
+  const t = signals[x.id]?.reviewed_at;
+  return !t || !Number.isFinite(Date.parse(t)) || (Date.now() - Date.parse(t)) / 86400000 >= (cadenceDays[x.update_frequency] || 30);
+}
+function stamp(t) {
+  if (!t) return 'هنوز مرور نشده';
+  const d = new Date(t);
+  return Number.isNaN(+d) ? 'تاریخ نامعتبر' : d.toLocaleDateString('fa-IR');
+}
+
+function overview() {
+  const activeCh = $('#chapter').value;
+  $('#chapters').innerHTML = names.map((n, i) => {
+    const chId = String(i + 1);
+    const a = indicators.filter(x => x.chapter_id === i + 1);
+    const set = a.filter(x => (signals[x.id]?.status || 'UNSET') !== 'UNSET').length;
+    return `<button type="button" class="chapter-card ${activeCh === chId ? 'active' : ''}" data-ch="${chId}">
+      <small>فصل ${(i + 1).toLocaleString('fa-IR')}</small>
+      <h3>${n}</h3>
+      <div><span class="big">${a.length.toLocaleString('fa-IR')}</span> <small>مدخل</small></div>
+      <div class="bar"><span style="width:${set / Math.max(a.length, 1) * 100}%"></span></div>
+      <small>${set.toLocaleString('fa-IR')} ارزیابی ثبت‌شده</small>
+    </button>`;
+  }).join('');
+  $('#chapters').querySelectorAll('[data-ch]').forEach(b => b.onclick = () => {
+    $('#chapter').value = $('#chapter').value === b.dataset.ch ? '' : b.dataset.ch;
+    tab('atlas', true);
+    overview();
+    render();
+  });
+}
+
+function dashboardSummary() {
+  const counts = { GREEN: 0, YELLOW: 0, RED: 0, UNSET: 0 };
+  indicators.forEach(x => counts[signals[x.id]?.status || 'UNSET']++);
+  const dueCount = indicators.filter(due).length;
+  $('#jumpdue').textContent = dueCount.toLocaleString('fa-IR') + ' مدخل نیازمند مرور — نمایش';
+  $('#jumpdue').onclick = () => {
+    view = 'due';
+    document.querySelectorAll('[data-view]').forEach(e => e.classList.toggle('active', e.dataset.view === 'due'));
+    tab('atlas', true);
+    render();
+  };
+  const activeSt = $('#status').value;
+  $('#regime').innerHTML =
+    '<div class="stackbar">' +
+    Object.entries(counts).map(([k, v]) => `<span style="width:${v / Math.max(indicators.length, 1) * 100}%;background:var(--${({GREEN:'green',YELLOW:'yellow',RED:'red',UNSET:'line'})[k]})" title="${statusNames[k]}: ${v}"></span>`).join('') +
+    '</div><div class="legend">' +
+    Object.entries(counts).map(([k, v]) => `<button type="button" class="${activeSt === k ? 'active' : ''}" data-stfilter="${k}" style="display:inline-flex;align-items:center;gap:6px"><i style="width:8px;height:8px;border-radius:50%;display:inline-block;background:var(--${({GREEN:'green',YELLOW:'yellow',RED:'red',UNSET:'line'})[k]})"></i>${statusNames[k]}: ${v.toLocaleString('fa-IR')}</button>`).join('') +
+    '</div>';
+  $('#regime').querySelectorAll('[data-stfilter]').forEach(b => b.onclick = () => {
+    $('#status').value = $('#status').value === b.dataset.stfilter ? '' : b.dataset.stfilter;
+    tab('atlas', true);
+    dashboardSummary();
+    render();
+  });
+}
+
+function harvestUnsavedInputs(id) {
+  const draft = {};
+  $('#cards').querySelectorAll(`[data-id="${id}"]`).forEach(e => { draft[e.dataset.field] = e.value; });
+  return draft;
+}
+
+async function persist(id, patch) {
+  if (saving) { toast('در حال ذخیره قبلی…'); return false; }
+  const before = JSON.parse(JSON.stringify(signals));
+  const draft = harvestUnsavedInputs(id);
+  saving = true;
+  signals[id] = { ...signals[id], ...draft, ...patch };
+  try {
+    const d = await api('/api/signals', { signals });
+    signals = d.signals;
+    overview();
+    dashboardSummary();
+    toast('ذخیره شد');
+    return true;
+  } catch (e) {
+    signals = before;
+    fail(e);
+    return false;
+  } finally {
+    saving = false;
+  }
+}
+
+function render() {
+  const qNorm = normFa($('#q').value.trim());
+  const chVal = $('#chapter').value;
+  const stVal = $('#status').value;
+  $('#resetfilters').style.display = (qNorm || chVal || stVal || view !== 'all') ? 'inline-block' : 'none';
+
+  const a = indicators.filter(x =>
+    (!qNorm || normFa(JSON.stringify(x)).includes(qNorm)) &&
+    (!chVal || String(x.chapter_id) === chVal) &&
+    (!stVal || (signals[x.id]?.status || 'UNSET') === stVal) &&
+    (view === 'all' ||
+     (view === 'due' && due(x)) ||
+     (view === 'pinned' && signals[x.id]?.pinned) ||
+     (view === 'fast' && ['روزانه', 'هفتگی'].includes(x.update_frequency)) ||
+     (view === 'slow' && ['ماهانه', 'فصلی'].includes(x.update_frequency)))
+  );
+
+  $('#count').textContent = a.length.toLocaleString('fa-IR') + ' مدخل از ' + indicators.length.toLocaleString('fa-IR');
+  $('#cards').innerHTML = a.map(x => {
+    const st = signals[x.id] || {}, status = st.status || 'UNSET';
+    const edOpen = openEditors.has(x.id) ? 'open' : '';
+    const gdOpen = openGuides.has(x.id) ? 'open' : '';
+    const pagesFa = fmtFaNum(String(x.pdf_pages).split('-')[0]) + (String(x.pdf_pages).includes('-') ? ' تا ' + fmtFaNum(String(x.pdf_pages).split('-')[1]) : '');
+    return `<article data-status="${status}">
+      <div class="cardtop">
+        <span class="tag"><bdi dir="ltr">${esc(x.id)}</bdi> · ${esc(x.update_frequency)}</span>
+        <button type="button" class="pin ${st.pinned ? 'active' : ''}" data-pin="${x.id}" aria-pressed="${!!st.pinned}" aria-label="${st.pinned ? 'حذف از' : 'افزودن به'} دیده‌بان: ${esc(x.title_fa)}">${st.pinned ? '★' : '☆'}</button>
+      </div>
+      <h3>${esc(x.title_fa)}</h3>
+      <small>${esc(names[x.chapter_id - 1])} · ص ${pagesFa}</small>
+      <div class="metric ${!st.observed_value ? 'empty' : ''}">${esc(st.observed_value || 'مقداری ثبت نشده')}</div>
+      <small>${st.source ? esc(st.source) + ' · ' : ''}${due(x) ? 'نیازمند مرور · ' : ''}${stamp(st.reviewed_at)}</small>
+      <div class="pills" aria-label="ارزیابی شخصی ${esc(x.title_fa)}">
+        ${[['GREEN', 'سبز', 'g'], ['YELLOW', 'زرد', 'y'], ['RED', 'قرمز', 'r']].map(([v, n, c]) =>
+          `<button type="button" class="${c}" data-set="${x.id}" data-status="${v}" aria-pressed="${status === v}">${n}</button>`
+        ).join('')}
+      </div>
+      <details data-editor="${x.id}" ${edOpen}>
+        <summary>ثبت مقدار، منبع و یادداشت${st.note ? ' (دارای یادداشت)' : ''}</summary>
+        <label>مقدار، واحد و دوره مشاهده<input data-id="${x.id}" data-field="observed_value" placeholder="مثلاً: ۵۱.۴ واحد — آبان ۱۴۰۵" value="${esc(st.observed_value)}"></label>
+        <label>منبع و تاریخ انتشار داده<input data-id="${x.id}" data-field="source" placeholder="مثلاً: اتاق ایران / بانک مرکزی" value="${esc(st.source)}"></label>
+        <label>یادداشت شخصی<textarea maxlength="600" data-id="${x.id}" data-field="note" placeholder="برداشت یا اقدام مرتبط با کسب‌وکار…">${esc(st.note)}</textarea></label>
+        <div class="row">
+          <button type="button" data-save="${x.id}">ذخیره و تأیید مرور</button>
+          <button type="button" data-clear="${x.id}">پاک‌کردن چراغ</button>
+          <span class="savefeedback" data-feedback="${x.id}" role="status"></span>
+        </div>
+        <div class="history">آخرین تغییرها: ${(st.history || []).map(h => `<div>${stamp(h.at)} · ${esc(statusNames[h.status] || h.status)}${h.value ? ' · ' + esc(h.value) : ''}</div>`).join('') || 'بدون سابقه'}</div>
+      </details>
+      <details data-guide="${x.id}" ${gdOpen}>
+        <summary>رابطه، تفسیر و نقد کتاب</summary>
+        <div class="formula">${esc(x.formula_or_metric)}</div>
+        <p>منبع پیشنهادی: ${esc(x.primary_source)}</p>
+        <p class="rule g">سبز (روایت کتاب): ${esc(x.green_condition)}</p>
+        <p class="rule y">زرد (روایت کتاب): ${esc(x.yellow_condition)}</p>
+        <p class="rule r">قرمز (روایت کتاب): ${esc(x.red_condition)}</p>
+        <p>توصیه منسوب به کتاب: ${esc(x.business_action_book)}</p>
+        <p class="caveat">نقد و احتیاط: ${esc(x.critical_caveat)}</p>
+        <button type="button" data-page="${parseInt(x.pdf_pages, 10) || 7}">مشاهده صفحه ${fmtFaNum(parseInt(x.pdf_pages, 10) || 7)} در کتاب‌خوان تصویری</button>
+      </details>
+    </article>`;
+  }).join('') || '<div class="empty-state">در این نما شاخصی یافت نشد. دکمه «حذف فیلترها» را بزنید یا عبارت جست‌وجو را تغییر دهید.</div>';
+
+  $('#cards').querySelectorAll('details[data-editor]').forEach(d => d.ontoggle = () => d.open ? openEditors.add(d.dataset.editor) : openEditors.delete(d.dataset.editor));
+  $('#cards').querySelectorAll('details[data-guide]').forEach(d => d.ontoggle = () => d.open ? openGuides.add(d.dataset.guide) : openGuides.delete(d.dataset.guide));
+
+  $('#cards').querySelectorAll('[data-pin]').forEach(b => b.onclick = async () => {
+    if (await persist(b.dataset.pin, { pinned: !signals[b.dataset.pin]?.pinned })) render();
+  });
+  $('#cards').querySelectorAll('[data-set]').forEach(b => b.onclick = async () => {
+    const cur = signals[b.dataset.set]?.status || 'UNSET';
+    const next = cur === b.dataset.status ? 'UNSET' : b.dataset.status;
+    const patch = { status: next };
+    if (next !== 'UNSET') patch.reviewed_at = new Date().toISOString();
+    if (await persist(b.dataset.set, patch)) render();
+  });
+  $('#cards').querySelectorAll('[data-clear]').forEach(b => b.onclick = async () => {
+    if (await persist(b.dataset.clear, { status: 'UNSET' })) render();
+  });
+  $('#cards').querySelectorAll('[data-save]').forEach(b => b.onclick = async () => {
+    const id = b.dataset.save;
+    openEditors.add(id);
+    if (await persist(id, { reviewed_at: new Date().toISOString() })) {
+      render();
+      const fb = $(`[data-feedback="${id}"]`);
+      if (fb) fb.textContent = '✓ ذخیره و در کارت به‌روزرسانی شد';
+    }
+  });
+  $('#cards').querySelectorAll('[data-page]').forEach(b => b.onclick = () => {
+    openBookPage(Number(b.dataset.page) || 7, true);
+  });
+}
+
+document.querySelectorAll('[data-view]').forEach(b => b.onclick = () => {
+  view = b.dataset.view;
+  document.querySelectorAll('[data-view]').forEach(e => e.classList.toggle('active', e === b));
+  render();
+});
+$('#resetfilters').onclick = () => {
+  $('#q').value = ''; $('#chapter').value = ''; $('#status').value = ''; view = 'all';
+  document.querySelectorAll('[data-view]').forEach(e => e.classList.toggle('active', e.dataset.view === 'all'));
+  overview(); dashboardSummary(); render();
+};
+['q', 'chapter', 'status'].forEach(id => $('#' + id).oninput = () => { overview(); dashboardSummary(); render(); });
+
+$('#theme').onclick = () => {
+  const st = document.createElement('style');
+  st.textContent = '*,*::before,*::after{transition:none!important}';
+  document.head.appendChild(st);
+  const t = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+  document.documentElement.dataset.theme = t;
+  localStorage.setItem('economy-atlas-theme', t);
+  $('#theme').textContent = t === 'light' ? 'تم مشکی' : 'تم روشن';
+  document.body.offsetHeight;
+  requestAnimationFrame(() => st.remove());
+};
+document.documentElement.dataset.theme = localStorage.getItem('economy-atlas-theme') || 'dark';
+$('#theme').textContent = document.documentElement.dataset.theme === 'light' ? 'تم مشکی' : 'تم روشن';
+
+$('#export').onclick = () => {
+  const blob = new Blob([JSON.stringify({ schema: 'economy-atlas-signals-v2', exported_at: new Date().toISOString(), signals }, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'economy-atlas-' + new Date().toISOString().slice(0, 10) + '.json';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+};
+$('#importbtn').onclick = () => $('#importfile').click();
+$('#importfile').onchange = async e => {
+  const f = e.target.files?.[0];
+  if (!f) return;
+  try {
+    const j = JSON.parse(await f.text());
+    if (!j || typeof j.signals !== 'object') throw Error('ساختار فایل پشتیبان معتبر نیست.');
+    const d = await api('/api/signals', { signals: j.signals });
+    signals = d.signals; overview(); dashboardSummary(); render();
+    toast('فایل پشتیبان بازیابی شد');
+  } catch (err) { fail(err); } finally { e.target.value = ''; }
+};
+
+/* --- Calculators Paired Workbench --- */
+const calcBlocks = [
+  ['real_sector_and_pricing', 'فصل ۱ و ۲: رشد واقعی مصرف و انتقال قیمت', [
+    ['shaparak_nom_growth_pct', 'رشد اسمی تراکنش‌ها (٪)', '36'],
+    ['cpi_inflation_pct', 'تورم مصرف‌کننده CPI (٪)', '42'],
+    ['ppi_inflation_pct', 'تورم تولیدکننده PPI (٪)', '47.5'],
+    ['product_price_growth_pct', 'رشد قیمت محصول شما (٪)', '34'],
+    ['group_cpi_growth_pct', 'تورم گروه کالایی (٪)', '40'],
+    ['fx_period_growth_pct', 'رشد ارز هم‌دوره (٪)', '45']
+  ]],
+  ['monetary_and_liquidity', 'فصل ۲: موتور پولی و ترکیب نقدینگی (۱ همت = ۱۰¹² تومان)', [
+    ['m2_hemmat', 'کل نقدینگی M2 (همت)', '12500'],
+    ['mb_hemmat', 'پایه پولی MB (همت)', '1580'],
+    ['m2_yoy_growth_pct', 'رشد سالانه نقدینگی (٪)', '39.5'],
+    ['money_m1_hemmat', 'پول جاری M1 (همت)', '3100'],
+    ['quasi_money_hemmat', 'شبه‌پول M2-M1 (همت)', '9400']
+  ]],
+  ['credit_and_rates', 'فصل ۳: بهره واقعی فیشر و کریدور بین‌بانکی', [
+    ['nominal_ytm_pct', 'بازده اسمی اوراق YTM (٪)', '34.5'],
+    ['expected_inf_pct', 'تورم انتظاری هم‌افق (٪)', '43'],
+    ['interbank_rate_pct', 'نرخ بهره بین‌بانکی (٪)', '23.9'],
+    ['corridor_ceiling_pct', 'سقف کریدور بانک مرکزی (٪)', '24'],
+    ['short_ytm_pct', 'بازده کوتاه‌مدت (٪)', '33.2'],
+    ['long_ytm_pct', 'بازده بلندمدت (٪)', '35.8']
+  ]],
+  ['fx_and_implicit_dollar', 'فصل ۴: نقدینگی دلاری، PPP، درهم و دلار ضمنی', [
+    ['free_usd_toman', 'دلار آزاد (تومان)', '92000'],
+    ['scenario_anchor_busd', 'لنگر فرضی نقدینگی (میلیارد دلار)', '135'],
+    ['base_usd_toman', 'دلار پایه PPP (تومان)', '65000'],
+    ['inf_us_pct', 'تورم خارجی / دلاری (٪)', '3.1'],
+    ['aed_remit_toman', 'نرخ حواله درهم (تومان)', '25150'],
+    ['official_usd_toman', 'دلار رسمی / نیما (تومان)', '68500'],
+    ['auto_domestic_toman', 'قیمت ریالی کالای معیار/خودرو (تومان)', '3450000000'],
+    ['auto_landed_usd', 'قیمت دلاری قابل مقایسه (دلار)', '33000']
+  ]]
+];
+
+const labels = {
+  real_consumption_exact_pct: 'رشد واقعی دقیق مصرف (فرم فیشر) ٪',
+  real_consumption_linear_pct: 'تقریب خطی رشد واقعی مصرف ٪',
+  ppi_minus_cpi_pct: 'شکاف پیشرو PPI منهای CPI (واحد درصد)',
+  product_to_group_cpi_ratio: 'نسبت رشد قیمت محصول به تورم گروه',
+  product_to_fx_ratio: 'نسبت رشد قیمت محصول به رشد ارز',
+  product_to_ppi_ratio: 'نسبت رشد قیمت محصول به PPI صنعت',
+  money_multiplier: 'ضریب فزاینده نقدینگی (M2 / MB)',
+  m2_minus_cpi_spring_pct: 'فاصله رشد نقدینگی و تورم (واحد درصد)',
+  m_to_q_ratio: 'نسبت پول به شبه‌پول (M / Q)',
+  money_share_pct: 'سهم پول جاری از کل نقدینگی M/(M+Q) ٪',
+  fisher_exact_real_rate_pct: 'نرخ بهره واقعی دقیق فیشر ٪',
+  fisher_linear_approx_pct: 'تقریب خطی بهره واقعی ٪',
+  corridor_ceiling_gap_pct: 'فاصله نرخ بین‌بانکی تا سقف کریدور (واحد درصد)',
+  yield_curve_slope_pct: 'شیب منحنی بازده (بلندمدت منهای کوتاه‌مدت)',
+  dollar_m2_billion_usd: 'نقدینگی دلاری (میلیارد دلار)',
+  scenario_anchor_billion_usd: 'لنگر سناریویی انتخابی (میلیارد دلار)',
+  implied_usd_at_anchor_toman: 'دلار متناظر با لنگر فرضی (تومان)',
+  ppp_exact_growth_pct: 'رشد دقیق برابری قدرت خرید (PPP) ٪',
+  ppp_linear_diff_pct: 'تفاضل خطی تورم داخلی و خارجی ٪',
+  ppp_implied_usd_toman: 'دلار سناریویی PPP از نرخ پایه (تومان)',
+  implied_usd_from_aed_toman: 'دلار مستتر در حواله درهم (× ۳.۶۷۲۵) (تومان)',
+  aed_vs_free_usd_spread_pct: 'شکاف دلار حواله درهم با اسکناس آزاد ٪',
+  fx_official_free_gap_pct: 'شکاف ارز آزاد و رسمی (رانت/فشار ارزی) ٪',
+  auto_implicit_usd_toman: 'دلار ضمنی مستتر در کالای معیار (تومان)',
+  auto_implicit_spread_pct: 'شکاف دلار ضمنی کالا با دلار آزاد ٪'
+};
+
+function buildCalcWorkbench() {
+  $('#calc-workbench').innerHTML = calcBlocks.map(([blockKey, title, fields]) => `
+    <div class="calc-pair">
+      <div class="panel">
+        <h3>ورودی‌ها · ${title}</h3>
+        <div class="calc-inputs">
+          ${fields.map(([k, l, v]) => `<label for="f-${k}">${l}<input id="f-${k}" data-key="${k}" data-default="${v}" type="text" inputmode="decimal" value="${fmtFaNum(v)}"></label>`).join('')}
+        </div>
+      </div>
+      <div class="panel" id="out-${blockKey}">
+        <h3>خروجی‌های محاسباتی</h3>
+        <div class="results-body">در حال محاسبه…</div>
+      </div>
+    </div>
+  `).join('');
+  let calcTimer = null;
+  document.querySelectorAll('[data-key]').forEach(inp => {
+    inp.oninput = () => {
+      clearTimeout(calcTimer);
+      calcTimer = setTimeout(calculate, 140);
+    };
+  });
+}
+
+async function calculate() {
+  try {
+    const p = {};
+    document.querySelectorAll('[data-key]').forEach(e => { p[e.dataset.key] = toEnDigits(e.value); });
+    const s = await api('/api/simulate', p);
+    calcBlocks.forEach(([blockKey]) => {
+      const data = s[blockKey];
+      const box = $(`#out-${blockKey} .results-body`);
+      if (!data || !box) return;
+      const rows = Object.entries(data).filter(([k]) => !k.endsWith('_signal')).map(([k, v]) =>
+        `<div class="result"><span>${labels[k] || esc(k)}</span><output dir="ltr">${fmtFaNum(v)}</output></div>`
+      ).join('');
+      const sigEntry = Object.entries(data).find(([k]) => k.endsWith('_signal'));
+      const sigHtml = sigEntry ? `<div class="signal-banner">${esc(sigEntry[1])}</div>` : '';
+      box.innerHTML = rows + sigHtml;
+    });
+  } catch (e) { fail(e); }
+}
+
+$('#resetcalc').onclick = () => {
+  document.querySelectorAll('[data-key]').forEach(e => { e.value = fmtFaNum(e.dataset.default); });
+  calculate();
+};
+
+/* --- Visual Book Reader + Highlighted Search --- */
+let currentPage = 12;
+async function openBookPage(p, switchTab = false) {
+  const num = Math.max(1, Math.min(176, parseInt(toEnDigits(p), 10) || 12));
+  currentPage = num;
+  $('#page').value = num.toLocaleString('fa-IR');
+  $('#prevpage').disabled = num <= 1;
+  $('#nextpage').disabled = num >= 176;
+  $('#pageimg').src = `./book-pages/page-${String(num).padStart(3, "0")}.jpg`;
+  if (switchTab) tab('reader', true);
+  try {
+    const d = await api('/api/book/page?page=' + num);
+    $('#pagemeta').textContent = `صفحه ${num.toLocaleString('fa-IR')} از ۱۷۶`;
+    $('#pagetext').textContent = d.text || d.error || 'متنی در لایه خام ثبت نشده است.';
+  } catch (e) { fail(e); }
+}
+$('#read').onclick = () => openBookPage($('#page').value);
+$('#page').onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); openBookPage($('#page').value); } };
+$('#prevpage').onclick = () => openBookPage(currentPage - 1);
+$('#nextpage').onclick = () => openBookPage(currentPage + 1);
+
+function highlightQuery(snippet, q) {
+  let safe = esc(snippet);
+  const terms = normFa(q).split(/\s+/).filter(t => t.length >= 2);
+  terms.forEach(t => {
+    const rx = new RegExp(`(${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    safe = safe.replace(rx, '<mark>$1</mark>');
+  });
+  return safe;
+}
+
+$('#searchform').onsubmit = async e => {
+  e.preventDefault();
+  const q = $('#bookq').value.trim();
+  if (!q) return;
+  try {
+    const d = await api('/api/book/search?q=' + encodeURIComponent(q) + '&limit=16');
+    $('#searchmeta').textContent = d.total_matched_pages
+      ? `${d.total_matched_pages.toLocaleString('fa-IR')} صفحه مرتبط یافت شد:`
+      : 'صفحه‌ای با این عبارت یافت نشد.';
+    $('#matches').innerHTML = (d.matches || []).map(x => `
+      <button type="button" class="match-card" data-p="${x.page}">
+        <div class="match-head"><span>صفحه ${x.page.toLocaleString('fa-IR')}</span><span>${x.hits.toLocaleString('fa-IR')} تکرار</span></div>
+        <div class="match-snippet">${highlightQuery(x.snippet, q)}</div>
+      </button>
+    `).join('');
+    $('#matches').querySelectorAll('[data-p]').forEach(b => b.onclick = () => {
+      $('#matches').querySelectorAll('.match-card').forEach(c => c.classList.toggle('active', c === b));
+      openBookPage(b.dataset.p, false);
+    });
+    if (d.matches?.[0]) openBookPage(d.matches[0].page, false);
+  } catch (err) { fail(err); }
+};
+
+/* --- Boot --- */
+(async () => {
+  try {
+    buildCalcWorkbench();
+    const s = await api('/api/state');
+    indicators = s.catalog.indicators;
+    signals = s.personal_signals.signals || {};
+    overview();
+    dashboardSummary();
+    render();
+    await calculate();
+    openBookPage(12, false);
+  } catch (e) { fail(e); }
+})();
+</script>
+</body>
+</html>
